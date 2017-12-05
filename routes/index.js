@@ -7,6 +7,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/auth', (req, res) => {
+  if (!req.session.loggedIn) {
+    req.session.loggedIn = true;
+  }
   res.render('login', { title: 'Successfully logged in!' });
 });
 
