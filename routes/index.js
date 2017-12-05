@@ -16,10 +16,15 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/secure', (req, res) => {
+  if (!req.session.visits) {
+    req.session.visits = 0;
+  }
+  req.session.visits++;
+
   if (req.session.loggedIn) {
-    res.render('index', { title: 'You are logged in!', date: `You're logged in. You logged in at ${ date }`});
+    res.render('secure', { title: 'You are logged in!', date: `You're logged in. You logged in at ${ date }`, logged: `You have logged in ${ req.session.visits } times.` });
   } else {
-    res.render('index', { title: 'You are not logged in!' });
+    res.render('secure', { title: 'You are not logged in!', date: ''});
   }
 });
 
