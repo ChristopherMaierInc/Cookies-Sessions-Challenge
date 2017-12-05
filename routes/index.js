@@ -13,4 +13,12 @@ router.get('/auth', (req, res) => {
   res.render('login', { title: 'Successfully logged in!' });
 });
 
+router.get('/secure', (req, res) => {
+  if (req.session.loggedIn) {
+    res.render('index', { title: 'You are logged in!' });
+  } else {
+    res.render('index', { title: 'You are not logged in!' });
+  }
+});
+
 module.exports = router;

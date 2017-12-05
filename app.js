@@ -27,7 +27,6 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
 }))
 
 app.use('/', index);
